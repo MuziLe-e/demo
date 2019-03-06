@@ -19,6 +19,7 @@ public class HelloWorldController {
     @RequestMapping("/hello")
     public String index() {
 		logger.info(user.getName());
+		int a = 3/0;
 		
 		return user.getName();
 		//return "hello boot";
