@@ -6,14 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.leete.domain.User;
 
 @RestController
 public class HelloWorldController {
 	
 	private Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
 	
-	@Autowired
+	/*@Autowired
 	private User user;
 	
     @RequestMapping("/hello")
@@ -23,6 +22,6 @@ public class HelloWorldController {
 		
 		return user.getName();
 		//return "hello boot";
-    }
+    }*/
     
 }

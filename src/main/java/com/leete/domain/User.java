@@ -1,24 +1,68 @@
 package com.leete.domain;
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
-
-@Component
-@ConfigurationProperties(prefix="spring.user")
 public class User {
-	
-	private String name;
+    private String id;
 
-	public String getName() {
-		return name;
-	}
+    private String name;
 
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	
+    private Integer age;
 
+    private String sex;
+
+    /**
+     * @return id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return age
+     */
+    public Integer getAge() {
+        return age;
+    }
+
+    /**
+     * @param age
+     */
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    /**
+     * @return sex
+     */
+    public String getSex() {
+        return sex;
+    }
+
+    /**
+     * @param sex
+     */
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 }

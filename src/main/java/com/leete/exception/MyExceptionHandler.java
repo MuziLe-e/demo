@@ -21,7 +21,7 @@ public class MyExceptionHandler {
 		
 		e.printStackTrace();
 		ModelAndView view = new ModelAndView("exception");
-		view.addObject("e", e);
+		view.addObject("e", e.getMessage());
 		view.addObject("url", request.getRequestURL());
 		view.setViewName("err");
 		return view;
