@@ -17,7 +17,7 @@ public class MyExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public ModelAndView exceptionHandler(HttpServletRequest request,HttpServletResponse response,Exception e) {
 		
-		logger.error("异常捕获成功");
+		logger.error("璁块棶寮傚父");
 		
 		e.printStackTrace();
 		ModelAndView view = new ModelAndView("exception");
