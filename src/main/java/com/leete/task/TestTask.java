@@ -12,7 +12,7 @@ public class TestTask {
 	
 	Long i = 0L;
 	
-	@Scheduled(cron="0/5 * * * * ?")
+	//@Scheduled(cron="0/5 * * * * ?")
 	public void autoRun() {
 		
 		logger.info((++i).toString());

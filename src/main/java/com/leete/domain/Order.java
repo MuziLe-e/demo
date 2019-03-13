@@ -22,6 +22,16 @@ public class Order implements Serializable {
 		this.messageid = messageid;
 	}
 
+	
+
+	public Order(String id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+
+
 	public String getId() {
 		return id;
 	}
@@ -45,6 +55,14 @@ public class Order implements Serializable {
 	public void setMessageid(String messageid) {
 		this.messageid = messageid;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", name=" + name + ", messageid=" + messageid + "]";
+	}
+	
 	
 	
 	

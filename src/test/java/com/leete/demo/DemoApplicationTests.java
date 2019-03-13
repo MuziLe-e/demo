@@ -28,7 +28,7 @@ public class DemoApplicationTests {
 		Order order = new Order("34234224", "leete", System.currentTimeMillis()+ "$$" +UUID.randomUUID());
 		
 		
-		orderSender.sendOrder(order);
+		//orderSender.sendOrder(order);
 		
 	}
 
