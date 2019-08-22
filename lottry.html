@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>LotttryTicket</title>
+<meta charset="UTF-8">
+</head>
+
+<div id="sourceNum">
+
+</div>
+
+<body onload="onload()">
+<h4>胆数</h1>
+<div>
+<input id="dan" type="text" />
+</div>
+<h4>拖数</h1>
+<div>
+<input id="tuo" type="text" />
+</div>
+
+<!-- 筛选条件 -->
+
+<!-- 结果区 -->
+<h4>结果</h4>
+<div>
+<textarea id="result"></textarea>
+</div>
+
+
+</body>
+
+
+
+<script>
+
+function onload(){
+
+	var sourceNumNode = document.getElementById("sourceNum");
+	var numButtonNode;
+	var buttonText = "";
+	for(var i=0;i<=33;i++){
+		numButtonNode = document.createElement("button");
+		buttonText = document.createTextNode(i);
+		numButtonNode.appendChild(buttonText);
+		sourceNumNode.appendChild(numButtonNode)
+	}
+	
+	
+}
+
+
+</script>
+
+
+
+
+
+</html>
+
+
