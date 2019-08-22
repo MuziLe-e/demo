@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>LotttryTicket</title>
+<meta charset="UTF-8">
+
+<style>
+body {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
+</head>
+
+<div id="sourceNum"></div>
+
+<body onload="onload()">
+
+	<h4>胆数</h4>
+	<div>
+		<input id="dan" type="text" " />
+		<button onclick=" document.getElementById('dan').disabled=true">确定</button>
+	</div>
+	<h4>拖数</h4>
+	<div>
+		<input id="tuo" type="text" />
+		<button onclick=" document.getElementById('tuo').disabled=true">确定</button>
+	</div>
+
+	<!-- 筛选条件 -->
+
+	<!-- 结果区 -->
+	<h4>结果</h4>
+	<div>
+		<textarea id="result"></textarea>
+	</div>
+</body>
+
+
+
+<script>
+	var danArray = new Array();
+	var tuoArray = new Array();
+
+	function onload() {
+
+		var sourceNumNode = document.getElementById("sourceNum");
+		var numButtonNode;
+		var buttonText = "";
+		for (var i = 0; i <= 33; i++) {
+			numButtonNode = document.createElement("button");
+			buttonText = document.createTextNode(i);
+			numButtonNode.appendChild(buttonText);
+			numButtonNode.addEventListener("click", writeNum);
+			sourceNumNode.appendChild(numButtonNode)
+		}
+	}
+
+	function writeNum() {
+		var dan = document.getElementById("dan");
+		if (dan.disabled == false) {
+			if (!dan.value) {
+				dan.value = this.innerHTML;
+			} else {
+				dan.value = dan.value + ',' + this.innerHTML;
+			}
+		} else {
+			var tuo = document.getElementById("tuo");
+			if (!tuo.value) {
+				tuo.value = this.innerHTML;
+			} else {
+				tuo.value = tuo.value + ',' + this.innerHTML;
+			}
+		}
+
+	}
+
+	function savaInput(input) {
+		if ('dan' == input.id) {
+			danArray = [ input.value ];
+		} else if ('tuo' == input.id) {
+			tuoArray = [ input.value ];
+		}
+	}
+</script>
+
+
+
+
+
+</html>
+
+

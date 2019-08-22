@@ -4,53 +4,112 @@
 <head>
 <title>LotttryTicket</title>
 <meta charset="UTF-8">
+<style>
+body {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
+
 </head>
 
-<div id="sourceNum">
+<div id="sourceNum"></div>
 
-</div>
+<body onload="onload()" >
 
-<body onload="onload()">
-<h4>胆数</h1>
-<div>
-<input id="dan" type="text" />
-</div>
-<h4>拖数</h1>
-<div>
-<input id="tuo" type="text" />
-</div>
+	<div>
+		<h4>请输入胆数:</h4>
+		<input id="dan" type="text" placeholder="数字间请用逗号隔开" />
+	</div>
 
-<!-- 筛选条件 -->
+	<div>
+		<h4>请输入拖数:</h4>
+		<input id="tuo" type="text" placeholder="数字间请用逗号隔开" />
+	</div>
 
-<!-- 结果区 -->
-<h4>结果</h4>
-<div>
-<textarea id="result"></textarea>
-</div>
+	<!-- 筛选条件 -->
 
 
+	<!-- 结果区 -->
+	<h4>
+		<button onclick="calcResult()">生成结果</button>
+	</h4>
+
+	<div>
+		<textarea id="result"></textarea>
+	</div>
 </body>
 
 
 
 <script>
 
-function onload(){
-
-	var sourceNumNode = document.getElementById("sourceNum");
-	var numButtonNode;
-	var buttonText = "";
-	for(var i=0;i<=33;i++){
-		numButtonNode = document.createElement("button");
-		buttonText = document.createTextNode(i);
-		numButtonNode.appendChild(buttonText);
-		sourceNumNode.appendChild(numButtonNode)
+	function calcResult(){
+		var num = document.getElementById("dan").value.split(",");
+		var tuo = document.getElementById("tuo").value.split(",");
+		var result = getNumbers(tuo,4);
+		
+		var resultText = document.getElementById("result");
+		
+		for(let arr of result){
+			resultText.value =  resultText.value + arr + ',' + num + '\n';
+		}
+		
+		
+		
 	}
-	
-	
-}
 
 
+	/**
+	 * 
+	 * @param {*} source 源数组
+	 * @param {*} count 要取出多少项
+	 * @param {*} isPermutation 是否使用排列的方式
+	 * @return {any[]} 所有排列组合,格式为 [ [1,2], [1,3]] ...
+	 */
+	function getNumbers(source, count, isPermutation = false) {
+	  //如果只取一位，返回数组中的所有项，例如 [ [1], [2], [3] ]
+	  let currentList = source.map((item) => [item]);
+	  if (count === 1) {
+	    return currentList;
+	  }
+	  let result = [];
+	  //取出第一项后，再取出后面count - 1 项的排列组合，并把第一项的所有可能（currentList）和 后面count-1项所有可能交叉组合
+	  for (let i = 0; i < currentList.length; i++) {
+	    let current = currentList[i];
+	    //如果是排列的方式，在取count-1时，源数组中排除当前项
+	    let children = [];
+	    if (isPermutation) {
+	      children = getNumbers(source.filter(item => item !== current[0]), count - 1, isPermutation);
+	    }
+	    //如果是组合的方法，在取count-1时，源数组只使用当前项之后的
+	    else {
+	      children = getNumbers(source.slice(i + 1), count - 1, isPermutation);
+	    }
+	    for (let child of children) {
+	      result.push([...current, ...child]);
+	    }
+	  }
+	  return result;
+	}
+
+
+
+
+
+	function onload() {
+
+		/* var sourceNumNode = document.getElementById("sourceNum");
+		var numButtonNode;
+		var buttonText = "";
+		for (var i = 0; i <= 33; i++) {
+			numButtonNode = document.createElement("button");
+			buttonText = document.createTextNode(i);
+			numButtonNode.appendChild(buttonText);
+			sourceNumNode.appendChild(numButtonNode)
+		} */
+	}
 </script>
 
 
