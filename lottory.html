@@ -5,64 +5,364 @@
 <title>LotttryTicket</title>
 <meta charset="UTF-8">
 <style>
-body {
+body{
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+table{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+button{
+	height: 25px;
+	width: 38px;
 }
 </style>
 
 </head>
 
-<div id="sourceNum"></div>
-
-<body onload="onload()" >
-
+<body onload="onload()">
+	
 	<div>
-		<h4>请输入胆数:</h4>
-		<input id="dan" type="text" placeholder="数字间请用逗号隔开" />
+		<button style="background:green;width:100px">绿色为胆数</button>
+		<button style="background:orange;width:100px">橙色为拖数</button>
+	</div>
+	<table id="num"></table>
+	
+
+	<div id="dan">
+		<h4>胆数:</h4>
+		
 	</div>
 
-	<div>
-		<h4>请输入拖数:</h4>
-		<input id="tuo" type="text" placeholder="数字间请用逗号隔开" />
+	<div id="tuo">
+		<h4>拖数:</h4>
+		
 	</div>
-
+	<br>
 	<!-- 筛选条件 -->
+	<div>
 
+		<div>
+			奇偶比：
+			<label><input name="jioubi" type="radio" value="0:6" />0:6</label> 
+			<label><input name="jioubi" type="radio" value="1:5" />1:5</label> 
+			<label><input name="jioubi" type="radio" value="2:4" />2:4</label> 
+			<label><input name="jioubi" type="radio" value="3:3" />3:3</label> 
+			<label><input name="jioubi" type="radio" value="4:2" />4:2</label> 
+			<label><input name="jioubi" type="radio" value="5:1" />5:1</label> 
+			<label><input name="jioubi" type="radio" value="6:0" />6:0</label> 
+		</div>
 
+		<div>
+			大小比：
+			<label><input name="daxiaobi" type="radio" value="0:6" />0:6</label> 
+			<label><input name="daxiaobi" type="radio" value="1:5" />1:5</label> 
+			<label><input name="daxiaobi" type="radio" value="2:4" />2:4</label> 
+			<label><input name="daxiaobi" type="radio" value="3:3" />3:3</label> 
+			<label><input name="daxiaobi" type="radio" value="4:2" />4:2</label> 
+			<label><input name="daxiaobi" type="radio" value="5:1" />5:1</label> 
+			<label><input name="daxiaobi" type="radio" value="6:0" />6:0</label> 
+		</div>
+
+		<div>
+			质合比：
+			<label><input name="zhihebi" type="radio" value="0:6" />0:6</label> 
+			<label><input name="zhihebi" type="radio" value="1:5" />1:5</label> 
+			<label><input name="zhihebi" type="radio" value="2:4" />2:4</label> 
+			<label><input name="zhihebi" type="radio" value="3:3" />3:3</label> 
+			<label><input name="zhihebi" type="radio" value="4:2" />4:2</label> 
+			<label><input name="zhihebi" type="radio" value="5:1" />5:1</label> 
+			<label><input name="zhihebi" type="radio" value="6:0" />6:0</label> 
+		</div>
+
+		<div>
+			连号组数：
+			<label><input name="lianhaozushu" type="radio" value="0" />0</label> 
+			<label><input name="lianhaozushu" type="radio" value="1" />1</label> 
+			<label><input name="lianhaozushu" type="radio" value="2" />2</label> 
+			<label><input name="lianhaozushu" type="radio" value="3" />3</label> 
+			<label><input name="lianhaozushu" type="radio" value="4" />4</label> 
+			<label><input name="lianhaozushu" type="radio" value="5" />5</label> 
+			<label><input name="lianhaozushu" type="radio" value="6" />6</label> 
+		</div>
+
+		<div>
+			位数不相同的个数：
+			<label><input name="weishugeshu" type="radio" value="2" />2</label> 
+			<label><input name="weishugeshu" type="radio" value="3" />3</label> 
+			<label><input name="weishugeshu" type="radio" value="4" />4</label> 
+			<label><input name="weishugeshu" type="radio" value="5" />5</label> 
+			<label><input name="weishugeshu" type="radio" value="6" />6</label> 
+		</div>
+
+	</div>
+
+	<br>
 	<!-- 结果区 -->
 	<h4>
-		<button onclick="calcResult()">生成结果</button>
+		<button onclick="calcResult()" style="width:90px">生成结果</button>
 	</h4>
 
 	<div>
-		<textarea id="result"></textarea>
+		<textarea id="result" style="height:220px;width:460px;font-size:20px;text-align:center;"></textarea>
 	</div>
 </body>
 
 
 
 <script>
+	
+	var arrarNum = new Array();
+	for (var i = 1 ; i <= 33; i++) {
+		arrarNum.push(i);
+	}
 
-	function calcResult(){
-		var num = document.getElementById("dan").value.split(",");
-		var tuo = document.getElementById("tuo").value.split(",");
-		var result = getNumbers(tuo,4);
-		
-		var resultText = document.getElementById("result");
-		
-		for(let arr of result){
-			resultText.value =  resultText.value + arr + ',' + num + '\n';
+	//加载页面时生成数字按钮
+	function onload(){
+
+		var tr = document.createElement("tr");
+		for(i in arrarNum){
+			
+			var td = document.createElement("td");
+			var button = document.createElement("button");
+			button.innerHTML = (parseInt(i) +1);
+			button.title = "单击选择胆数，双击选择拖数";
+			button.onclick = function() {
+				clickEvent(this);
+			};
+			button.ondblclick = function(){
+				dbclickEvent(this);
+			};
+			td.appendChild(button);
+			tr.appendChild(td);
+
+			if(i==10 || i==21 || i==32){
+				document.getElementById("num").appendChild(tr);
+				tr = document.createElement("tr");
+			}
+
 		}
-		
-		
+
+	}
+
+	//设置按钮的单击和双击事件
+	var clickTimeId ;
+	function clickEvent(ele) {
+			clearTimeout(clickTimeId);
+			clickTimeId = setTimeout(function(){
+				ele.disabled = true;
+				ele.style = "background-color:green";
+				var button = document.createElement("button");
+				button.innerHTML = ele.innerHTML;
+				button.name = "dan";
+				button.onclick = function() {
+					deleteNum(this);
+				}
+				document.querySelector('#dan').appendChild(button);
+			},300);
+	}
+
+	function dbclickEvent(ele) {
+		clearTimeout(clickTimeId);
+		ele.disabled = true;
+		ele.style = "background-color:orange";
+		var button = document.createElement("button");
+		button.innerHTML = ele.innerHTML;
+		button.name = "tuo";
+		button.onclick = function() {
+			deleteNum(this);
+		}
+		document.querySelector('#tuo').appendChild(button);
+	}
+
+	//删除胆数或者拖数
+	function deleteNum(button) {
+		var numButton =  document.querySelectorAll('table tr td button');
+		for(var i=0;i<numButton.length;i++){
+			if(numButton[i].innerHTML == button.innerHTML){
+				numButton[i].disabled = false;
+				numButton[i].style = "background-color:";
+			}
+		}
+		button.remove();
+	}
+
+	//获取radio的值
+	function getRadioValue(radioName){
+	    var radios = document.getElementsByName(radioName);
+	    var value = '';
+	    for(var i=0;i<radios.length;i++){
+	        if(radios[i].checked){
+	            value = radios[i].value;
+	            break;
+	        }
+	    }
+	    return value;
+	}
+
+	//根据筛选条件筛选结果
+	function selectNum(result) {
+
+		var jioubiValue = getRadioValue("jioubi");
+		var daxiaobiValue = getRadioValue("daxiaobi");
+		var zhihebiValue = getRadioValue("zhihebi");
+
+		for (var i = 0; i < result.length; i++) {
+
+			if(jioubiValue != ''){
+				if(!jioubi(result[i],jioubiValue)){
+					delete result[i];
+					continue;
+				}
+			}
+
+			if(daxiaobiValue != ''){
+				if(!daxiaobi(result[i],daxiaobiValue)){
+					delete result[i];
+					continue;
+				}
+			}
+
+			if(zhihebiValue != ''){
+				if(!zhihebi(result[i],zhihebiValue)){
+					delete result[i];
+					continue;
+				}
+			}
+			
+		}
 		
 	}
 
+	//奇偶比
+	function jioubi(arr,jioubiValue) {
+		
+		var jishu = 0;
+		var oushu = 0;
+		for (var i = 0; i < arr.length; i++) {
+			if(arr[i]%2==0){
+				oushu += 1;
+			}else{
+				jishu += 1;
+			}
+		}
+
+		if((jishu + ":" + oushu) == jioubiValue){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	//质合比
+	function zhihebi(arr,zhihebiValue) {
+		var zhishu = 0;
+		var heshu = 0;
+		var zhishuArr = [2,3,5,7,11,13,17,19,23,29,31];
+		for (var i = 0; i < arr.length; i++) {
+			if(zhishuArr.includes(arr[i])){
+				zhishu += 1;
+			}else{
+				heshu += 1;
+			}
+		}
+
+		if((zhishu + ":" + heshu) == zhihebiValue){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	//大小比
+	function daxiaobi(arr,daxiaobiValue) {
+		var dashu = 0;
+		var xiaoshu = 0;
+		for (var i = 0; i < arr.length; i++) {
+			if(arr[i] > 16){
+				dashu += 1;
+			}else{
+				xiaoshu += 1;
+			}
+		}
+
+		if((dashu + ":" + xiaoshu) == daxiaobiValue){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
+
+	//生成结果
+	function calcResult(){
+		var danButton = document.getElementsByName("dan");
+		var tuoButton = document.getElementsByName("tuo");
+
+		//胆数和拖数校验
+		var countDan = danButton.length;
+		var countTuo = tuoButton.length;
+		try{
+			if(countDan+countTuo < 6){
+				throw '胆数和拖数个数之和小于6,请继续选择';
+			}
+
+			if(countDan > 6){
+				throw '胆数个数大于6,请删掉部分胆数';
+			}
+		}catch(err){
+			alert(err);
+			return;
+		}
+
+
+		var dan = new Array();
+		var tuo = new Array();
+
+		for(var i=0;i<danButton.length;i++){
+			dan.push(parseInt(danButton[i].innerHTML));
+		}
+
+		for(var i=0;i<tuoButton.length;i++){
+			tuo.push(parseInt(tuoButton[i].innerHTML));
+		}
+
+		//拖数进行组合
+		var tuoResult = getNumbers(tuo,6-countDan);
+
+		var result = new Array();
+		for(let arr of tuoResult){
+			result.push((arr.concat(dan)).sort(sortArr));
+		}
+
+		selectNum(result);
+
+
+		//将筛选的结果放到areatext结果区
+		var resultText = document.getElementById("result");
+		resultText.value = "";
+		
+		for(let arr of result){
+			if(undefined != arr){
+				resultText.value =  resultText.value + arr + '\n';
+			}
+			
+		}
+		
+	}
+
+	//排序函数
+	function sortArr(a,b){
+		return a - b;
+	}
 
 	/**
-	 * 
 	 * @param {*} source 源数组
 	 * @param {*} count 要取出多少项
 	 * @param {*} isPermutation 是否使用排列的方式
@@ -94,22 +394,7 @@ body {
 	  return result;
 	}
 
-
-
-
-
-	function onload() {
-
-		/* var sourceNumNode = document.getElementById("sourceNum");
-		var numButtonNode;
-		var buttonText = "";
-		for (var i = 0; i <= 33; i++) {
-			numButtonNode = document.createElement("button");
-			buttonText = document.createTextNode(i);
-			numButtonNode.appendChild(buttonText);
-			sourceNumNode.appendChild(numButtonNode)
-		} */
-	}
+	
 </script>
 
 
