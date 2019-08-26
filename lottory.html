@@ -92,7 +92,7 @@ button{
 		</div>
 
 		<div>
-			位数不相同的个数：
+			尾数不相同的个数：
 			<label><input name="weishugeshu" type="radio" value="2" />2</label> 
 			<label><input name="weishugeshu" type="radio" value="3" />3</label> 
 			<label><input name="weishugeshu" type="radio" value="4" />4</label> 
@@ -211,6 +211,8 @@ button{
 		var jioubiValue = getRadioValue("jioubi");
 		var daxiaobiValue = getRadioValue("daxiaobi");
 		var zhihebiValue = getRadioValue("zhihebi");
+		var lianhaozushuValue = getRadioValue("lianhaozushu");
+		var weishugeshuValue = getRadioValue("weishugeshu");
 
 		for (var i = 0; i < result.length; i++) {
 
@@ -230,6 +232,20 @@ button{
 
 			if(zhihebiValue != ''){
 				if(!zhihebi(result[i],zhihebiValue)){
+					delete result[i];
+					continue;
+				}
+			}
+
+			if(lianhaozushuValue != ''){
+				if(!lianhaozushu(result[i],lianhaozushuValue)){
+					delete result[i];
+					continue;
+				}
+			}
+
+			if(weishugeshuValue != ''){
+				if(!weishugeshu(result[i],weishugeshuValue)){
 					delete result[i];
 					continue;
 				}
@@ -297,6 +313,43 @@ button{
 			return false;
 		}
 	}
+
+	//连号组数
+	function lianhaozushu(arr,lianhaozushuValue) {
+
+		var lianhaoCount = 0;
+		for (var i = 0; i < arr.length-1; i++) {
+			if(arr[i] + 1 == arr[i+1]){
+				lianhaoCount += 1;
+			}
+		}
+
+		if(lianhaoCount == parseInt(lianhaozushuValue)){
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+
+	// 尾数个数
+	function weishugeshu(arr,weishugeshuValue) {
+		var weishugeshu = 0;
+		var weishuArr = new Array();
+		for (var i = 0; i < arr.length; i++) {
+			if(!weishuArr.includes(arr[i]%10)){
+				weishuArr.push(arr[i]%10);
+			}
+		}
+
+		if(weishuArr.length == parseInt(weishugeshuValue)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+
 
 
 
