@@ -28,8 +28,9 @@ button{
 <body onload="onload()">
 	
 	<div>
-		<button style="background:green;width:100px">绿色为胆数</button>
-		<button style="background:orange;width:100px">橙色为拖数</button>
+		<button style="background:green;width:100px">单击选择胆数</button>
+		<button style="background:orange;width:100px">双击选择拖数</button>
+		<button onclick="location.reload()" style="background: orangered; width:100px">重选</button>
 	</div>
 	<table id="num"></table>
 	
@@ -182,7 +183,7 @@ button{
 	</h4>
 
 	<div>
-		<textarea id="result" style="height:220px;width:460px;font-size:20px;text-align:center;"></textarea>
+		<textarea id="result" disabled="disabled" style="height:220px;width:460px;font-size:20px;text-align:center;"></textarea>
 	</div>
 </body>
 
@@ -233,6 +234,7 @@ button{
 				var button = document.createElement("button");
 				button.innerHTML = ele.innerHTML;
 				button.name = "dan";
+				button.title = "单击可删除该数字";
 				button.onclick = function() {
 					deleteNum(this);
 				}
@@ -247,6 +249,7 @@ button{
 		var button = document.createElement("button");
 		button.innerHTML = ele.innerHTML;
 		button.name = "tuo";
+		button.title = "单击可删除该数字";
 		button.onclick = function() {
 			deleteNum(this);
 		}
@@ -350,7 +353,7 @@ button{
 
 			}else if((parseInt(yushu1Value) + parseInt(yushu2Value) + parseInt(yushu0Value)) != 6){
 				alert("0、1、2的余数个数之和必须等于6，请调整选项！");
-				return;
+				return '';
 			}else{
 				if(!yushu(result[i],yushu1Value,yushu2Value,yushu0Value)){
 					delete result[i];
@@ -363,7 +366,7 @@ button{
 
 			}else if((parseInt(quwei1Value) + parseInt(quwei2Value) + parseInt(quwei3Value)) != 6){
 				alert("区位分布个数之和必须等于6，请调整选项！");
-				return;
+				return '';
 			}else{
 				if(!quwei(result[i],quwei1Value,quwei2Value,quwei3Value)){
 					delete result[i];
@@ -560,11 +563,20 @@ button{
 		var tuoResult = getNumbers(tuo,6-countDan);
 
 		var result = new Array();
-		for(let arr of tuoResult){
-			result.push((arr.concat(dan)).sort(sortArr));
+		if(countTuo == 0 || tuoResult.length == 0){
+			result.push(dan.sort(sortArr));
+		}else{
+			for(let arr of tuoResult){
+				result.push((arr.concat(dan)).sort(sortArr));
+			}
 		}
 
-		selectNum(result);
+
+		var selectedResult = selectNum(result);
+		if(selectedResult == ''){
+			return ;
+		}
+
 
 
 		//将筛选的结果放到areatext结果区
@@ -616,6 +628,7 @@ button{
 	  }
 	  return result;
 	}
+
 
 	
 </script>
