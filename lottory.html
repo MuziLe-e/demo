@@ -9,6 +9,7 @@ body{
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
+	font-size: x-large;
 }
 
 table{
@@ -17,10 +18,26 @@ table{
 	margin-right: auto;
 }
 
-button{
-	height: 25px;
-	width: 38px;
+[type=radio] {
+	width: 20px;
+	height: 20px;
 }
+
+[type=checkbox] {
+	width: 15px;
+	height:15px;
+}
+
+select {
+	width: 45px;
+	height:30px;
+	font-size: x-large;
+}
+
+select option {
+	font-size: x-large;
+}
+
 </style>
 
 </head>
@@ -28,28 +45,117 @@ button{
 <body onload="onload()">
 	
 	<div>
-		<button style="background:green;width:100px">单击选择胆数</button>
-		<button style="background:orange;width:100px">双击选择拖数</button>
-		<button onclick="location.reload()" style="background: orangered; width:100px">重选</button>
+		<button style="background:green;width:140px"><b>单击选择胆数</b></button>
+		<button style="background:orange;width:140px"><b>双击选择拖数</b></button>
+		<button onclick="location.reload()" style="background: orangered; width:100px"><b>重选</b></button>
 	</div>
 	<table id="num"></table>
-	
 
-	<div id="dan">
-		<h4>胆数:</h4>
-		
-	</div>
+	<br>
 
-	<div id="tuo">
-		<h4>拖数:</h4>
-		
-	</div>
+	<table border="1">
+		<tr>
+			<td width="60px" height="40px">
+				<b>胆数:</b>
+			</td>
+			<td id="dan" width="520px">
+			</td>
+		</tr>
+		<tr>
+			<td height="40px">
+				<b>拖数:</b>
+			</td>
+			<td id="tuo">
+			</td>
+		</tr>
+	</table>
+
 	<br>
 	<!-- 筛选条件 -->
-	<div>
+	<table border="1px">
+		<tr>
+			<td>
+				异尾个数：
+			</td>
+			<td>
+				<label><input name="weishugeshu" type="radio" value="2" />2</label>
+				<label><input name="weishugeshu" type="radio" value="3" />3</label>
+				<label><input name="weishugeshu" type="radio" value="4" />4</label>
+				<label><input name="weishugeshu" type="radio" value="5" />5</label>
+				<label><input name="weishugeshu" type="radio" value="6" />6</label>
+				<label><input name="weishugeshu" type="radio" value="" />不选</label>
+			</td>
+		</tr>
 
-		<div>
+		<tr>
+			<td  rowspan="2">
+				相同尾号：
+			</td>
+			<td>
+				<label><input name="weishushuzhi" type="checkbox" value="1" />1</label>
+				<label><input name="weishushuzhi" type="checkbox" value="2" />2</label>
+				<label><input name="weishushuzhi" type="checkbox" value="3" />3</label>
+				<label><input name="weishushuzhi" type="checkbox" value="4" />4</label>
+				<label><input name="weishushuzhi" type="checkbox" value="5" />5</label>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+
+				<label><input name="weishushuzhi" type="checkbox" value="6" />6</label>
+				<label><input name="weishushuzhi" type="checkbox" value="7" />7</label>
+				<label><input name="weishushuzhi" type="checkbox" value="8" />8</label>
+				<label><input name="weishushuzhi" type="checkbox" value="9" />9</label>
+				<label><input name="weishushuzhi" type="checkbox" value="0" />0</label>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				余数构成:&nbsp;&nbsp;
+			</td>
+			<td>
+				1:
+				<select id="yushu1">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+				&nbsp;&nbsp;
+				2:
+				<select id="yushu2">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+				&nbsp;&nbsp;
+				0:
+				<select id="yushu0">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+			</td>
+		</tr>
+
+		<tr>
+			<td width="130px">
 			奇偶比：
+			</td>
+			<td width="450px">
 			<label><input name="jioubi" type="checkbox" value="0:6" />0:6</label>
 			<label><input name="jioubi" type="checkbox" value="1:5" />1:5</label>
 			<label><input name="jioubi" type="checkbox" value="2:4" />2:4</label>
@@ -57,10 +163,14 @@ button{
 			<label><input name="jioubi" type="checkbox" value="4:2" />4:2</label>
 			<label><input name="jioubi" type="checkbox" value="5:1" />5:1</label>
 			<label><input name="jioubi" type="checkbox" value="6:0" />6:0</label>
-		</div>
+			</td>
+		</tr>
 
-		<div>
+		<tr>
+			<td>
 			大小比：
+			</td>
+			<td>
 			<label><input name="daxiaobi" type="checkbox" value="0:6" />0:6</label>
 			<label><input name="daxiaobi" type="checkbox" value="1:5" />1:5</label>
 			<label><input name="daxiaobi" type="checkbox" value="2:4" />2:4</label>
@@ -68,10 +178,14 @@ button{
 			<label><input name="daxiaobi" type="checkbox" value="4:2" />4:2</label>
 			<label><input name="daxiaobi" type="checkbox" value="5:1" />5:1</label>
 			<label><input name="daxiaobi" type="checkbox" value="6:0" />6:0</label>
-		</div>
+			</td>
+		</tr>
 
-		<div>
+		<tr>
+			<td>
 			质合比：
+			</td>
+			<td>
 			<label><input name="zhihebi" type="checkbox" value="0:6" />0:6</label>
 			<label><input name="zhihebi" type="checkbox" value="1:5" />1:5</label>
 			<label><input name="zhihebi" type="checkbox" value="2:4" />2:4</label>
@@ -79,11 +193,14 @@ button{
 			<label><input name="zhihebi" type="checkbox" value="4:2" />4:2</label>
 			<label><input name="zhihebi" type="checkbox" value="5:1" />5:1</label>
 			<label><input name="zhihebi" type="checkbox" value="6:0" />6:0</label>
-		</div>
+			</td>
+		</tr>
 		
-		<br>
-		<div >
-			连号组数：
+		<tr>
+			<td>
+			连号数：
+			</td>
+			<td>
 			<label><input name="lianhaozushu" type="radio" value="0" />0</label> 
 			<label><input name="lianhaozushu" type="radio" value="1" />1</label> 
 			<label><input name="lianhaozushu" type="radio" value="2" />2</label> 
@@ -92,75 +209,16 @@ button{
 			<label><input name="lianhaozushu" type="radio" value="5" />5</label> 
 			<label><input name="lianhaozushu" type="radio" value="6" />6</label>
 			<label><input name="lianhaozushu" type="radio" value="" />不选</label>
-		</div>
-
-		<div>
-			尾数不相同的个数 ：
-			<label><input name="weishugeshu" type="radio" value="2" />2</label> 
-			<label><input name="weishugeshu" type="radio" value="3" />3</label> 
-			<label><input name="weishugeshu" type="radio" value="4" />4</label> 
-			<label><input name="weishugeshu" type="radio" value="5" />5</label> 
-			<label><input name="weishugeshu" type="radio" value="6" />6</label>
-			<label><input name="weishugeshu" type="radio" value="" />不选</label>
-		</div>
-
-		<div>
-			相同尾数的数值 ：
-			<label><input name="weishushuzhi" type="checkbox" value="0" />0</label>
-			<label><input name="weishushuzhi" type="checkbox" value="1" />1</label>
-			<label><input name="weishushuzhi" type="checkbox" value="2" />2</label>
-			<label><input name="weishushuzhi" type="checkbox" value="3" />3</label>
-			<label><input name="weishushuzhi" type="checkbox" value="4" />4</label>
-			<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<label><input name="weishushuzhi" type="checkbox" value="5" />5</label>
-			<label><input name="weishushuzhi" type="checkbox" value="6" />6</label>
-			<label><input name="weishushuzhi" type="checkbox" value="7" />7</label>
-			<label><input name="weishushuzhi" type="checkbox" value="8" />8</label>
-			<label><input name="weishushuzhi" type="checkbox" value="9" />9</label>
-		</div>
+			</td>
+		</tr>
 
 
-		<br>
-		<div>
-			除3后余数为1、2、0的个数:&nbsp;&nbsp;
-			1:
-			<select id="yushu1">
-			  	<option value="0">0</option>
-			  	<option value="1">1</option>
-			  	<option value="2">2</option>
-			 	<option value="3">3</option>
-			 	<option value="4">4</option>
-			 	<option value="5">5</option>
-			 	<option value="6">6</option>
-			</select>
-			&nbsp;&nbsp;
-			2:
-			<select id="yushu2">
-			  	<option value="0">0</option>
-			  	<option value="1">1</option>
-			  	<option value="2">2</option>
-			 	<option value="3">3</option>
-			 	<option value="4">4</option>
-			 	<option value="5">5</option>
-			 	<option value="6">6</option>
-			</select>
-			&nbsp;&nbsp;
-			0:
-			<select id="yushu0">
-			  	<option value="0">0</option>
-			  	<option value="1">1</option>
-			  	<option value="2">2</option>
-			 	<option value="3">3</option>
-			 	<option value="4">4</option>
-			 	<option value="5">5</option>
-			 	<option value="6">6</option>
-			</select>
-		</div>
-		<br>
-		<div>
-			区位比：	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			1~11:
+		<tr>
+			<td>
+			区间比：	&nbsp;
+			</td>
+			<td>
+			A:
 			<select id="quwei1">
 			  	<option value="0">0</option>
 			  	<option value="1">1</option>
@@ -171,7 +229,7 @@ button{
 			 	<option value="6">6</option>
 			</select>
 			&nbsp;&nbsp;
-			12~22:
+			B:
 			<select id="quwei2">
 			  	<option value="0">0</option>
 			  	<option value="1">1</option>
@@ -182,7 +240,7 @@ button{
 			 	<option value="6">6</option>
 			</select>
 			&nbsp;&nbsp;
-			23~33:
+			C:
 			<select id="quwei3">
 			  	<option value="0">0</option>
 			  	<option value="1">1</option>
@@ -192,19 +250,21 @@ button{
 			 	<option value="5">5</option>
 			 	<option value="6">6</option>
 			</select>
-		</div>
+			</td>
+		</tr>
 
-	</div>
+	</table>
 
-	<br>
 	<!-- 结果区 -->
-	<h4>
+	<h6>
 		<button onclick="calcResult()" style="width:90px">生成结果</button>
-	</h4>
+	</h6>
 
-	<div>
-		<textarea id="result" disabled="disabled" style="height:220px;width:460px;font-size:20px;text-align:center;"></textarea>
-	</div>
+	<table id="result" border="0">
+
+	</table>
+
+
 </body>
 
 
@@ -216,6 +276,10 @@ button{
 		arrarNum.push(i);
 	}
 
+	function PrefixInteger(num, n) {
+		return (Array(n).join(0) + num).slice(-n);
+	}
+
 	//加载页面时生成数字按钮
 	function onload(){
 
@@ -224,8 +288,9 @@ button{
 			
 			var td = document.createElement("td");
 			var button = document.createElement("button");
-			button.innerHTML = (parseInt(i) +1);
+			button.innerHTML = (parseInt(i)+1);
 			button.title = "单击选择胆数，双击选择拖数";
+			button.style = "width:50px;height:40px;font-weight:bold;font-size:24px;";
 			button.onclick = function() {
 				clickEvent(this);
 			};
@@ -250,9 +315,10 @@ button{
 			clearTimeout(clickTimeId);
 			clickTimeId = setTimeout(function(){
 				ele.disabled = true;
-				ele.style = "background-color:green";
+				ele.style = "background-color:green;width:40px;height:30px;font-weight:bold;font-size:20px;";
 				var button = document.createElement("button");
 				button.innerHTML = ele.innerHTML;
+				button.style = "width:40px;height:30px;font-weight:bold;font-size:20px;";
 				button.name = "dan";
 				button.title = "单击可删除该数字";
 				button.onclick = function() {
@@ -265,9 +331,10 @@ button{
 	function dbclickEvent(ele) {
 		clearTimeout(clickTimeId);
 		ele.disabled = true;
-		ele.style = "background-color:orange";
+		ele.style = "background-color:orange;width:40px;height:30px;font-weight:bold;font-size:20px;";
 		var button = document.createElement("button");
 		button.innerHTML = ele.innerHTML;
+		button.style = "width:40px;height:30px;font-weight:bold;font-size:20px;";
 		button.name = "tuo";
 		button.title = "单击可删除该数字";
 		button.onclick = function() {
@@ -282,7 +349,7 @@ button{
 		for(var i=0;i<numButton.length;i++){
 			if(numButton[i].innerHTML == button.innerHTML){
 				numButton[i].disabled = false;
-				numButton[i].style = "background-color:";
+				numButton[i].style = "background-color:;width:40px;height:30px;font-weight:bold;font-size:20px;";
 			}
 		}
 		button.remove();
@@ -329,7 +396,7 @@ button{
 		var zhihebiValue = getCheckboxValue("zhihebi");
 		var lianhaozushuValue = getRadioValue("lianhaozushu");
 		var weishugeshuValue = getRadioValue("weishugeshu");
-		var weishugeshuValue = getCheckboxValue("weishushuzhi");
+		var weishushuzhiValue = getCheckboxValue("weishushuzhi");
 
 		var yushu1Value = getSelectValue("yushu1");
 		var yushu2Value = getSelectValue("yushu2");
@@ -376,6 +443,13 @@ button{
 
 			if(weishugeshuValue != ''){
 				if(!weishugeshu(result[i],weishugeshuValue)){
+					delete result[i];
+					continue;
+				}
+			}
+
+			if(weishushuzhiValue != ''){
+				if(!weishushuzhi(result[i],weishushuzhiValue)){
 					delete result[i];
 					continue;
 				}
@@ -437,7 +511,7 @@ button{
 	function zhihebi(arr,zhihebiValue) {
 		var zhishu = 0;
 		var heshu = 0;
-		var zhishuArr = [2,3,5,7,11,13,17,19,23,29,31];
+		var zhishuArr = [1,2,3,5,7,11,13,17,19,23,29,31]; // 1当做质数处理
 		for (var i = 0; i < arr.length; i++) {
 			if(zhishuArr.includes(arr[i])){
 				zhishu += 1;
@@ -505,6 +579,23 @@ button{
 		}else{
 			return false;
 		}
+	}
+
+	//相同尾数的数值
+	function weishushuzhi(arr,weishushuzhiValue) {
+		var sameWeishuArr = new Array();
+		var weishuArr = new Array();
+		for (var i = 0; i < arr.length; i++) {
+			if (!weishuArr.includes(arr[i]%10)) {
+				weishuArr.push(arr[i]%10);
+			}else{
+				if ( weishushuzhiValue.includes(arr[i]%10 + "")){
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	//余数个数
@@ -613,16 +704,21 @@ button{
 
 
 		//将筛选的结果放到areatext结果区
-		var resultText = document.getElementById("result");
-		resultText.value = "";
-		
+		var resultTable = document.getElementById("result");
+		while(resultTable.hasChildNodes()){
+			resultTable.removeChild(resultTable.firstChild);
+		}
+
+
 		for(let arr of result){
 			if(undefined != arr){
-				resultText.value =  resultText.value + arr + '\n';
+				var tr = document.createElement("tr");
+				for (let i = 0; i < arr.length; i++) {
+					tr.append(document.createElement("td").innerHTML = PrefixInteger(arr[i],2) + "    ");
+				}
+				resultTable.appendChild(tr);
 			}
-			
 		}
-		
 	}
 	
 
