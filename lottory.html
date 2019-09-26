@@ -16,6 +16,7 @@ table{
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
+	border-collapse:collapse;
 }
 
 [type=radio] {
@@ -58,7 +59,7 @@ select option {
 			<td width="60px" height="40px">
 				<b>胆数:</b>
 			</td>
-			<td id="dan" width="520px">
+			<td id="dan" width="510px">
 			</td>
 		</tr>
 		<tr>
@@ -72,18 +73,31 @@ select option {
 
 	<br>
 	<!-- 筛选条件 -->
-	<table border="1px">
+	<table border="1px solid" cellpadding="2px">
 		<tr>
-			<td>
+			<td width="120px">
 				异尾个数：
 			</td>
-			<td>
+			<td  width="450px">
 				<label><input name="weishugeshu" type="radio" value="2" />2</label>
 				<label><input name="weishugeshu" type="radio" value="3" />3</label>
 				<label><input name="weishugeshu" type="radio" value="4" />4</label>
 				<label><input name="weishugeshu" type="radio" value="5" />5</label>
 				<label><input name="weishugeshu" type="radio" value="6" />6</label>
 				<label><input name="weishugeshu" type="radio" value="" />不选</label>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				尾号必含：
+			</td>
+			<td>
+				<label><input name="weihaobihan" type="checkbox" value="16" />16</label>
+				<label><input name="weihaobihan" type="checkbox" value="27" />27</label>
+				<label><input name="weihaobihan" type="checkbox" value="38" />38</label>
+				<label><input name="weihaobihan" type="checkbox" value="49" />49</label>
+				<label><input name="weihaobihan" type="checkbox" value="50" />50</label>
 			</td>
 		</tr>
 
@@ -102,7 +116,6 @@ select option {
 
 		<tr>
 			<td>
-
 				<label><input name="weishushuzhi" type="checkbox" value="6" />6</label>
 				<label><input name="weishushuzhi" type="checkbox" value="7" />7</label>
 				<label><input name="weishushuzhi" type="checkbox" value="8" />8</label>
@@ -113,7 +126,7 @@ select option {
 
 		<tr>
 			<td>
-				余数构成:&nbsp;&nbsp;
+				余数构成:
 			</td>
 			<td>
 				1:
@@ -152,10 +165,10 @@ select option {
 		</tr>
 
 		<tr>
-			<td width="130px">
+			<td>
 			奇偶比：
 			</td>
-			<td width="450px">
+			<td>
 			<label><input name="jioubi" type="checkbox" value="0:6" />0:6</label>
 			<label><input name="jioubi" type="checkbox" value="1:5" />1:5</label>
 			<label><input name="jioubi" type="checkbox" value="2:4" />2:4</label>
@@ -195,6 +208,46 @@ select option {
 			<label><input name="zhihebi" type="checkbox" value="6:0" />6:0</label>
 			</td>
 		</tr>
+
+		<tr>
+			<td>
+				区间比：
+			</td>
+			<td>
+				A:
+				<select id="quwei1">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+				&nbsp;&nbsp;
+				B:
+				<select id="quwei2">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+				&nbsp;&nbsp;
+				C:
+				<select id="quwei3">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+			</td>
+		</tr>
 		
 		<tr>
 			<td>
@@ -209,47 +262,6 @@ select option {
 			<label><input name="lianhaozushu" type="radio" value="5" />5</label> 
 			<label><input name="lianhaozushu" type="radio" value="6" />6</label>
 			<label><input name="lianhaozushu" type="radio" value="" />不选</label>
-			</td>
-		</tr>
-
-
-		<tr>
-			<td>
-			区间比：	&nbsp;
-			</td>
-			<td>
-			A:
-			<select id="quwei1">
-			  	<option value="0">0</option>
-			  	<option value="1">1</option>
-			  	<option value="2">2</option>
-			 	<option value="3">3</option>
-			 	<option value="4">4</option>
-			 	<option value="5">5</option>
-			 	<option value="6">6</option>
-			</select>
-			&nbsp;&nbsp;
-			B:
-			<select id="quwei2">
-			  	<option value="0">0</option>
-			  	<option value="1">1</option>
-			  	<option value="2">2</option>
-			 	<option value="3">3</option>
-			 	<option value="4">4</option>
-			 	<option value="5">5</option>
-			 	<option value="6">6</option>
-			</select>
-			&nbsp;&nbsp;
-			C:
-			<select id="quwei3">
-			  	<option value="0">0</option>
-			  	<option value="1">1</option>
-			  	<option value="2">2</option>
-			 	<option value="3">3</option>
-			 	<option value="4">4</option>
-			 	<option value="5">5</option>
-			 	<option value="6">6</option>
-			</select>
 			</td>
 		</tr>
 
@@ -315,10 +327,10 @@ select option {
 			clearTimeout(clickTimeId);
 			clickTimeId = setTimeout(function(){
 				ele.disabled = true;
-				ele.style = "background-color:green;width:40px;height:30px;font-weight:bold;font-size:20px;";
+				ele.style = "background-color:green;width:50px;height:40px;font-weight:bold;font-size:24px;";
 				var button = document.createElement("button");
 				button.innerHTML = ele.innerHTML;
-				button.style = "width:40px;height:30px;font-weight:bold;font-size:20px;";
+				button.style = "width:50px;height:40px;font-weight:bold;font-size:24px;";
 				button.name = "dan";
 				button.title = "单击可删除该数字";
 				button.onclick = function() {
@@ -331,10 +343,10 @@ select option {
 	function dbclickEvent(ele) {
 		clearTimeout(clickTimeId);
 		ele.disabled = true;
-		ele.style = "background-color:orange;width:40px;height:30px;font-weight:bold;font-size:20px;";
+		ele.style = "background-color:orange;width:50px;height:40px;font-weight:bold;font-size:24px;";
 		var button = document.createElement("button");
 		button.innerHTML = ele.innerHTML;
-		button.style = "width:40px;height:30px;font-weight:bold;font-size:20px;";
+		button.style = "width:50px;height:40px;font-weight:bold;font-size:24px;";
 		button.name = "tuo";
 		button.title = "单击可删除该数字";
 		button.onclick = function() {
@@ -349,7 +361,7 @@ select option {
 		for(var i=0;i<numButton.length;i++){
 			if(numButton[i].innerHTML == button.innerHTML){
 				numButton[i].disabled = false;
-				numButton[i].style = "background-color:;width:40px;height:30px;font-weight:bold;font-size:20px;";
+				numButton[i].style = "background-color:;width:50px;height:40px;font-weight:bold;font-size:24px;";
 			}
 		}
 		button.remove();
@@ -397,6 +409,7 @@ select option {
 		var lianhaozushuValue = getRadioValue("lianhaozushu");
 		var weishugeshuValue = getRadioValue("weishugeshu");
 		var weishushuzhiValue = getCheckboxValue("weishushuzhi");
+		var weihaobihanValue = getCheckboxValue("weihaobihan");
 
 		var yushu1Value = getSelectValue("yushu1");
 		var yushu2Value = getSelectValue("yushu2");
@@ -454,6 +467,15 @@ select option {
 					continue;
 				}
 			}
+
+			if(weihaobihanValue != ''){
+				if(!weihaobihan(result[i],weihaobihanValue)){
+					delete result[i];
+					continue;
+				}
+			}
+
+
 
 			//校验 ：0、1、2的余数个数之和必须等于6
 			if(yushu1Value == 0 && yushu2Value == 0 && yushu0Value == 0){
@@ -592,6 +614,39 @@ select option {
 				if ( weishushuzhiValue.includes(arr[i]%10 + "")){
 					return true;
 				}
+			}
+		}
+
+		return false;
+	}
+
+	function weihaobihan(arr,weihaobihanValue) {
+		let checkWeishuArr = new Array();
+
+		if(weihaobihanValue.includes("16")){
+			checkWeishuArr.push(1);
+			checkWeishuArr.push(6);
+		}
+		if(weihaobihanValue.includes("27")){
+			checkWeishuArr.push(2);
+			checkWeishuArr.push(7);
+		}
+		if(weihaobihanValue.includes("38")){
+			checkWeishuArr.push(3);
+			checkWeishuArr.push(8);
+		}
+		if(weihaobihanValue.includes("49")){
+			checkWeishuArr.push(4);
+			checkWeishuArr.push(9);
+		}
+		if(weihaobihanValue.includes("50")){
+			checkWeishuArr.push(5);
+			checkWeishuArr.push(0);
+		}
+
+		for (var i = 0; i < arr.length; i++) {
+			if (checkWeishuArr.includes(arr[i]%10)) {
+				return true;
 			}
 		}
 
