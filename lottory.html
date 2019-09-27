@@ -769,7 +769,13 @@ select option {
 			if(undefined != arr){
 				var tr = document.createElement("tr");
 				for (let i = 0; i < arr.length; i++) {
-					tr.append(document.createElement("td").innerHTML = PrefixInteger(arr[i],2) + "    ");
+				    var td = document.createElement("td");
+				    td.innerHTML = PrefixInteger(arr[i],2);
+				    td.style = "width:40px;"
+				    if(i == arr.length-1){
+                        td.innerHTML = td.innerHTML + '\n';
+                    }
+					tr.append(td);
 				}
 				resultTable.appendChild(tr);
 			}
