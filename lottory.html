@@ -272,7 +272,9 @@ select option {
 		<button onclick="calcResult()" style="width:90px">生成结果</button>
 	</h6>
 
-	<table id="result" border="0">
+	<b id="totalNum" ></b>
+
+	<table id="result" border="1px solid">
 
 	</table>
 
@@ -752,10 +754,13 @@ select option {
 
 
 		var selectedResult = selectNum(result);
-		if(selectedResult == ''){
+		if(result == ''){
 			return ;
 		}
 
+		//统计总组数
+		var totalNum = document.getElementById("totalNum");
+		totalNum.innerHTML = "生成结果组数为： " +  result.length;
 
 
 		//将筛选的结果放到areatext结果区
@@ -765,11 +770,19 @@ select option {
 		}
 
 
-		for(let arr of result){
+		for(let j=0; j< result.length; j++){
+			var arr = result[j];
 			if(undefined != arr){
 				var tr = document.createElement("tr");
+
 				for (let i = 0; i < arr.length; i++) {
-					tr.append(document.createElement("td").innerHTML = PrefixInteger(arr[i],2) + "    ");
+				    var td = document.createElement("td");
+				    td.innerHTML = PrefixInteger(arr[i],2);
+				    td.style = "width:80px;"
+				    if(i == arr.length-1){
+                        td.innerHTML = td.innerHTML + '\n';
+                    }
+					tr.append(td);
 				}
 				resultTable.appendChild(tr);
 			}
