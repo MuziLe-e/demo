@@ -274,9 +274,7 @@ select option {
 
 	<b id="totalNum" ></b>
 
-	<table id="result" border="1px solid">
-
-	</table>
+	<table id="result" border="0px solid" style="font-size: 21px;font-weight: bold;"></table>
 
 
 </body>
@@ -774,19 +772,27 @@ select option {
 			var arr = result[j];
 			if(undefined != arr){
 				var tr = document.createElement("tr");
-
+				if ((j+1)%10 == 0) {
+					tr.style = "color:#C00000;";
+				}
 				for (let i = 0; i < arr.length; i++) {
 				    var td = document.createElement("td");
-				    td.innerHTML = PrefixInteger(arr[i],2);
-				    td.style = "width:80px;"
+
 				    if(i == arr.length-1){
-                        td.innerHTML = td.innerHTML + '\n';
-                    }
+						td.innerHTML = PrefixInteger(arr[i],2) + "\n";
+                    }else {
+						td.innerHTML = PrefixInteger(arr[i],2);
+					}
+
+					td.style = "width:80px;"
 					tr.append(td);
 				}
 				resultTable.appendChild(tr);
 			}
 		}
+		var finalTr = document.createElement("tr")
+		finalTr.innerHTML = "<td>----</td><td>----</td><td>----</td><td>----</td><td>----</td><td>----</td>";
+		resultTable.appendChild(finalTr);
 	}
 	
 
