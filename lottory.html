@@ -610,16 +610,19 @@ select option {
 		for (var i = 0; i < arr.length; i++) {
 			if (!weishuArr.includes(arr[i]%10)) {
 				weishuArr.push(arr[i]%10);
-			}else{
-				if ( weishushuzhiValue.includes(arr[i]%10 + "")){
-					return true;
-				}
+			}else if(!sameWeishuArr.includes(arr[i]%10 + "")){
+				sameWeishuArr.push(arr[i]%10 + "");
 			}
+		}
+
+		if ( weishushuzhiValue.sort().toString() == sameWeishuArr.sort().toString() ){
+			return true;
 		}
 
 		return false;
 	}
 
+	//尾号必含
 	function weihaobihan(arr,weihaobihanValue) {
 		let checkWeishuArr = new Array();
 
@@ -754,6 +757,14 @@ select option {
 		var selectedResult = selectNum(result);
 		if(result == ''){
 			return ;
+		}else{
+			//删除为undefined的元素
+			for(var i = 0; i < result.length; i++) {
+				if(result[i] == undefined ) {
+					result.splice(i,1);
+					i = i - 1; // i - 1 ,因为空元素在数组下标 2 位置，删除空之后，后面的元素要向前补位，
+				}
+			}
 		}
 
 		//统计总组数
