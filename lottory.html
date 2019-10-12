@@ -624,36 +624,65 @@ select option {
 
 	//尾号必含
 	function weihaobihan(arr,weihaobihanValue) {
-		let checkWeishuArr = new Array();
-
-		if(weihaobihanValue.includes("16")){
-			checkWeishuArr.push(1);
-			checkWeishuArr.push(6);
-		}
-		if(weihaobihanValue.includes("27")){
-			checkWeishuArr.push(2);
-			checkWeishuArr.push(7);
-		}
-		if(weihaobihanValue.includes("38")){
-			checkWeishuArr.push(3);
-			checkWeishuArr.push(8);
-		}
-		if(weihaobihanValue.includes("49")){
-			checkWeishuArr.push(4);
-			checkWeishuArr.push(9);
-		}
-		if(weihaobihanValue.includes("50")){
-			checkWeishuArr.push(5);
-			checkWeishuArr.push(0);
-		}
+		let weishuArr = new Array();
 
 		for (var i = 0; i < arr.length; i++) {
-			if (checkWeishuArr.includes(arr[i]%10)) {
-				return true;
+			if (!weishuArr.includes(arr[i]%10)) {
+				weishuArr.push(arr[i]%10);
 			}
 		}
 
-		return false;
+		if(weihaobihanValue.includes("16")){
+			if(!(weishuArr.includes(1) && weishuArr.includes(6))){
+				return false;
+			}
+		}else{
+			if(weishuArr.includes(1) && weishuArr.includes(6)){
+				return false;
+			}
+		}
+
+		if(weihaobihanValue.includes("27")){
+			if(!(weishuArr.includes(2) && weishuArr.includes(7))){
+				return false;
+			}
+		}else{
+			if(weishuArr.includes(2) && weishuArr.includes(7)){
+				return false;
+			}
+		}
+
+		if(weihaobihanValue.includes("38")){
+			if(!(weishuArr.includes(3) && weishuArr.includes(8))){
+				return false;
+			}
+		}else{
+			if(weishuArr.includes(3) && weishuArr.includes(8)){
+				return false;
+			}
+		}
+
+		if(weihaobihanValue.includes("49")){
+			if(!(weishuArr.includes(4) && weishuArr.includes(9))){
+				return false;
+			}
+		}else{
+			if(weishuArr.includes(4) && weishuArr.includes(9)){
+				return false;
+			}
+		}
+
+		if(weihaobihanValue.includes("50")){
+			if(!(weishuArr.includes(5) && weishuArr.includes(0))){
+				return false;
+			}
+		}else{
+			if(weishuArr.includes(5) && weishuArr.includes(0)){
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	//余数个数
