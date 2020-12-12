@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>LotttryTicket</title>
+<meta charset="UTF-8">
+<style>
+body{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: x-large;
+}
+
+table{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse:collapse;
+}
+
+[type=radio] {
+	width: 20px;
+	height: 20px;
+}
+
+[type=checkbox] {
+	width: 15px;
+	height:15px;
+}
+
+.yushu select{
+	color: orangered;
+	background-color: lightgreen;
+}
+
+.yushu select option{
+	color: orangered;
+}
+
+select {
+	width: 45px;
+	height:30px;
+	font-size: x-large;
+}
+
+select option {
+	font-size: x-large;
+}
+
+</style>
+
+</head>
+
+<body onload="onload()">
+	
+	<div>
+		<button style="background:green;width:140px"><b>单击选择胆数</b></button>
+		<button style="background:orange;width:140px"><b>双击选择拖数</b></button>
+		<button onclick="location.reload()" style="background: orangered; width:100px"><b>重选</b></button>
+	</div>
+	<table id="num"></table>
+
+	<br>
+
+	<table border="1">
+		<tr>
+			<td width="60px" height="40px">
+				<b>胆数:</b>
+			</td>
+			<td id="dan" width="510px">
+			</td>
+		</tr>
+		<tr>
+			<td height="40px">
+				<b>拖数:</b>
+			</td>
+			<td id="tuo">
+			</td>
+		</tr>
+	</table>
+
+	<br>
+	<!-- 筛选条件 -->
+	<table border="1px solid" cellpadding="2px">
+		<tr>
+			<td width="120px">
+				异尾个数：
+			</td>
+			<td  width="450px">
+				<label><input name="weishugeshu" type="radio" value="2" />2</label>
+				<label><input name="weishugeshu" type="radio" value="3" />3</label>
+				<label><input name="weishugeshu" type="radio" value="4" />4</label>
+				<label><input name="weishugeshu" type="radio" value="5" />5</label>
+				<label><input name="weishugeshu" type="radio" value="6" />6</label>
+				<label><input name="weishugeshu" type="radio" value="" />不选</label>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				尾号必含：
+			</td>
+			<td>
+				<label><input name="weihaobihan" type="checkbox" value="16" />16</label>
+				<label><input name="weihaobihan" type="checkbox" value="27" />27</label>
+				<label><input name="weihaobihan" type="checkbox" value="38" />38</label>
+				<label><input name="weihaobihan" type="checkbox" value="49" />49</label>
+				<label><input name="weihaobihan" type="checkbox" value="50" />50</label>
+			</td>
+		</tr>
+
+		<tr>
+			<td  rowspan="2">
+				相同尾号：
+			</td>
+			<td>
+				<label><input name="weishushuzhi" type="checkbox" value="1" />1</label>
+				<label><input name="weishushuzhi" type="checkbox" value="2" />2</label>
+				<label><input name="weishushuzhi" type="checkbox" value="3" />3</label>
+				<label><input name="weishushuzhi" type="checkbox" value="4" />4</label>
+				<label><input name="weishushuzhi" type="checkbox" value="5" />5</label>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<label><input name="weishushuzhi" type="checkbox" value="6" />6</label>
+				<label><input name="weishushuzhi" type="checkbox" value="7" />7</label>
+				<label><input name="weishushuzhi" type="checkbox" value="8" />8</label>
+				<label><input name="weishushuzhi" type="checkbox" value="9" />9</label>
+				<label><input name="weishushuzhi" type="checkbox" value="0" />0</label>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				余数构成:
+			</td>
+			<td class="yushu">
+				1:
+				<select id="yushu1">
+					<option value="x"></option>
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+				&nbsp;&nbsp;
+				2:
+				<select id="yushu2">
+					<option value="x"></option>
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+				&nbsp;&nbsp;
+				0:
+				<select id="yushu0">
+					<option value="x"></option>
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+			奇偶比：
+			</td>
+			<td>
+			<label><input name="jioubi" type="checkbox" value="0:6" />0:6</label>
+			<label><input name="jioubi" type="checkbox" value="1:5" />1:5</label>
+			<label><input name="jioubi" type="checkbox" value="2:4" />2:4</label>
+			<label><input name="jioubi" type="checkbox" value="3:3" />3:3</label>
+			<label><input name="jioubi" type="checkbox" value="4:2" />4:2</label>
+			<label><input name="jioubi" type="checkbox" value="5:1" />5:1</label>
+			<label><input name="jioubi" type="checkbox" value="6:0" />6:0</label>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+			小大比：
+			</td>
+			<td>
+			<label><input name="xiaodabi" type="checkbox" value="0:6" />0:6</label>
+			<label><input name="xiaodabi" type="checkbox" value="1:5" />1:5</label>
+			<label><input name="xiaodabi" type="checkbox" value="2:4" />2:4</label>
+			<label><input name="xiaodabi" type="checkbox" value="3:3" />3:3</label>
+			<label><input name="xiaodabi" type="checkbox" value="4:2" />4:2</label>
+			<label><input name="xiaodabi" type="checkbox" value="5:1" />5:1</label>
+			<label><input name="xiaodabi" type="checkbox" value="6:0" />6:0</label>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+			质合比：
+			</td>
+			<td>
+			<label><input name="zhihebi" type="checkbox" value="0:6" />0:6</label>
+			<label><input name="zhihebi" type="checkbox" value="1:5" />1:5</label>
+			<label><input name="zhihebi" type="checkbox" value="2:4" />2:4</label>
+			<label><input name="zhihebi" type="checkbox" value="3:3" />3:3</label>
+			<label><input name="zhihebi" type="checkbox" value="4:2" />4:2</label>
+			<label><input name="zhihebi" type="checkbox" value="5:1" />5:1</label>
+			<label><input name="zhihebi" type="checkbox" value="6:0" />6:0</label>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				区间比：
+			</td>
+			<td>
+				A:
+				<select id="quwei1">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+				&nbsp;&nbsp;
+				B:
+				<select id="quwei2">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+				&nbsp;&nbsp;
+				C:
+				<select id="quwei3">
+					<option value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+				</select>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>
+			连号数：
+			</td>
+			<td>
+			<label><input name="lianhaozushu" type="radio" value="0" />0</label> 
+			<label><input name="lianhaozushu" type="radio" value="1" />1</label> 
+			<label><input name="lianhaozushu" type="radio" value="2" />2</label> 
+			<label><input name="lianhaozushu" type="radio" value="3" />3</label> 
+			<label><input name="lianhaozushu" type="radio" value="4" />4</label> 
+			<label><input name="lianhaozushu" type="radio" value="5" />5</label> 
+			<label><input name="lianhaozushu" type="radio" value="6" />6</label>
+			<label><input name="lianhaozushu" type="radio" value="" />不选</label>
+			</td>
+		</tr>
+
+	</table>
+
+	<!-- 结果区 -->
+	<h6>
+		<button id="calcResult" onclick="calcResult()" style="width:90px">生成结果</button>
+	</h6>
+
+	<b id="totalNum" ></b>
+
+	<table id="result" border="0px solid" style="font-size: 21px;font-weight: bold;"></table>
+
+
+</body>
+
+
+
+<script>
+	
+	var arrarNum = new Array();
+	for (var i = 1 ; i <= 33; i++) {
+		arrarNum.push(i);
+	}
+
+	function PrefixInteger(num, n) {
+		return (Array(n).join(0) + num).slice(-n);
+	}
+
+	//加载页面时生成数字按钮
+	function onload(){
+
+		var tr = document.createElement("tr");
+		for(i in arrarNum){
+			
+			var td = document.createElement("td");
+			var button = document.createElement("button");
+			button.innerHTML = (parseInt(i)+1);
+			button.title = "单击选择胆数，双击选择拖数";
+			button.style = "width:50px;height:40px;font-weight:bold;font-size:24px;";
+			button.onclick = function() {
+				clickEvent(this);
+			};
+			button.ondblclick = function(){
+				dbclickEvent(this);
+			};
+			td.appendChild(button);
+			tr.appendChild(td);
+
+			if(i==10 || i==21 || i==32){
+				document.getElementById("num").appendChild(tr);
+				tr = document.createElement("tr");
+			}
+
+		}
+
+	}
+
+	//设置按钮的单击和双击事件
+	var clickTimeId ;
+	function clickEvent(ele) {
+			clearTimeout(clickTimeId);
+			clickTimeId = setTimeout(function(){
+				ele.disabled = true;
+				ele.style = "background-color:green;width:50px;height:40px;font-weight:bold;font-size:24px;";
+				var button = document.createElement("button");
+				button.innerHTML = ele.innerHTML;
+				button.style = "width:50px;height:40px;font-weight:bold;font-size:24px;";
+				button.name = "dan";
+				button.title = "单击可删除该数字";
+				button.onclick = function() {
+					deleteNum(this);
+				}
+				document.querySelector('#dan').appendChild(button);
+			},300);
+	}
+
+	function dbclickEvent(ele) {
+		clearTimeout(clickTimeId);
+		ele.disabled = true;
+		ele.style = "background-color:orange;width:50px;height:40px;font-weight:bold;font-size:24px;";
+		var button = document.createElement("button");
+		button.innerHTML = ele.innerHTML;
+		button.style = "width:50px;height:40px;font-weight:bold;font-size:24px;";
+		button.name = "tuo";
+		button.title = "单击可删除该数字";
+		button.onclick = function() {
+			deleteNum(this);
+		}
+		document.querySelector('#tuo').appendChild(button);
+	}
+
+	//删除胆数或者拖数
+	function deleteNum(button) {
+		var numButton =  document.querySelectorAll('table tr td button');
+		for(var i=0;i<numButton.length;i++){
+			if(numButton[i].innerHTML == button.innerHTML){
+				numButton[i].disabled = false;
+				numButton[i].style = "background-color:;width:50px;height:40px;font-weight:bold;font-size:24px;";
+			}
+		}
+		button.remove();
+	}
+
+	//获取radio的值
+	function getRadioValue(radioName){
+	    var radios = document.getElementsByName(radioName);
+	    var value = '';
+	    for(var i=0;i<radios.length;i++){
+	        if(radios[i].checked){
+	            value = radios[i].value;
+	            break;
+	        }
+	    }
+	    return value;
+	}
+
+	//获取checkbox的值,返回数组
+	function getCheckboxValue(checkboxName){
+		var checkboxs = document.getElementsByName(checkboxName);
+		var value = [];
+		for(var i=0;i<checkboxs.length;i++){
+			if(checkboxs[i].checked){
+				value.push(checkboxs[i].value);
+			}
+		}
+		return value;
+	}
+
+	//获取select 选择的值
+	function getSelectValue(selectId){
+		var selectObj = document.getElementById(selectId);
+		var selectedIndex = selectObj.selectedIndex;
+		var selectedValue = selectObj.options[selectedIndex].value;
+		return selectedValue;
+	}
+
+	//根据筛选条件筛选结果
+	function selectNum(result) {
+
+		var jioubiValue = getCheckboxValue("jioubi");
+		var xiaodabiValue = getCheckboxValue("xiaodabi");
+		var zhihebiValue = getCheckboxValue("zhihebi");
+		var lianhaozushuValue = getRadioValue("lianhaozushu");
+		var weishugeshuValue = getRadioValue("weishugeshu");
+		var weishushuzhiValue = getCheckboxValue("weishushuzhi");
+		var weihaobihanValue = getCheckboxValue("weihaobihan");
+
+		var yushu1Value = getSelectValue("yushu1");
+		var yushu2Value = getSelectValue("yushu2");
+		var yushu0Value = getSelectValue("yushu0");
+
+
+
+		var quwei1Value = getSelectValue("quwei1");
+		var quwei2Value = getSelectValue("quwei2");
+		var quwei3Value = getSelectValue("quwei3");
+
+
+
+
+		for (var i = 0; i < result.length; i++) {
+
+			if(jioubiValue.length > 0){
+				if(!jioubi(result[i],jioubiValue)){
+					delete result[i];
+					continue;
+				}
+			}
+
+			if(xiaodabiValue.length > 0){
+				if(!xiaodabi(result[i],xiaodabiValue)){
+					delete result[i];
+					continue;
+				}
+			}
+
+			if(zhihebiValue.length > 0){
+				if(!zhihebi(result[i],zhihebiValue)){
+					delete result[i];
+					continue;
+				}
+			}
+
+			if(lianhaozushuValue != ''){
+				if(!lianhaozushu(result[i],lianhaozushuValue)){
+					delete result[i];
+					continue;
+				}
+			}
+
+			if(weishugeshuValue != ''){
+				if(!weishugeshu(result[i],weishugeshuValue)){
+					delete result[i];
+					continue;
+				}
+			}
+
+			if(weishushuzhiValue != ''){
+				if(!weishushuzhi(result[i],weishushuzhiValue)){
+					delete result[i];
+					continue;
+				}
+			}
+
+			if(weihaobihanValue != ''){
+				if(!weihaobihan(result[i],weihaobihanValue)){
+					delete result[i];
+					continue;
+				}
+			}
+
+
+
+			//校验 ：0、1、2的余数个数之和必须等于6
+			if(yushu1Value == 'x' && yushu2Value == 'x' && yushu0Value == 'x'){
+
+			}else{
+				if(!yushu(result[i],yushu1Value,yushu2Value,yushu0Value)){
+					delete result[i];
+					continue;
+				}
+			}
+
+			//校验 ：区位分布个数之和必须等于6
+			if(quwei1Value == 0 && quwei2Value == 0 && quwei3Value == 0){
+
+			}else if((parseInt(quwei1Value) + parseInt(quwei2Value) + parseInt(quwei3Value)) != 6){
+				alert("区位分布个数之和必须等于6，请调整选项！");
+				return '';
+			}else{
+				if(!quwei(result[i],quwei1Value,quwei2Value,quwei3Value)){
+					delete result[i];
+					continue;
+				}
+			}
+
+
+			
+		}
+		
+	}
+
+	//奇偶比
+	function jioubi(arr,jioubiValue) {
+		
+		var jishu = 0;
+		var oushu = 0;
+		for (var i = 0; i < arr.length; i++) {
+			if(arr[i]%2==0){
+				oushu += 1;
+			}else{
+				jishu += 1;
+			}
+		}
+
+		if(jioubiValue.includes(jishu + ":" + oushu)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	//质合比
+	function zhihebi(arr,zhihebiValue) {
+		var zhishu = 0;
+		var heshu = 0;
+		var zhishuArr = [1,2,3,5,7,11,13,17,19,23,29,31]; // 1当做质数处理
+		for (var i = 0; i < arr.length; i++) {
+			if(zhishuArr.includes(arr[i])){
+				zhishu += 1;
+			}else{
+				heshu += 1;
+			}
+		}
+
+		if(zhihebiValue.includes(zhishu + ":" + heshu)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	//小大比
+	function xiaodabi(arr,xiaodabiValue) {
+		var dashu = 0;
+		var xiaoshu = 0;
+		for (var i = 0; i < arr.length; i++) {
+			if(arr[i] > 16){
+				dashu += 1;
+			}else{
+				xiaoshu += 1;
+			}
+		}
+
+		if(xiaodabiValue.includes(xiaoshu + ":" + dashu)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	//连号组数
+	function lianhaozushu(arr,lianhaozushuValue) {
+
+		var lianhaoCount = 0;
+		for (var i = 0; i < arr.length-1; i++) {
+			if(arr[i] + 1 == arr[i+1]){
+				lianhaoCount += 1;
+			}
+		}
+
+		if(lianhaoCount == parseInt(lianhaozushuValue)){
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+
+	// 尾数个数
+	function weishugeshu(arr,weishugeshuValue) {
+		var weishugeshu = 0;
+		var weishuArr = new Array();
+		for (var i = 0; i < arr.length; i++) {
+			if(!weishuArr.includes(arr[i]%10)){
+				weishuArr.push(arr[i]%10);
+			}
+		}
+
+		if(weishuArr.length == parseInt(weishugeshuValue)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	//相同尾数的数值
+	function weishushuzhi(arr,weishushuzhiValue) {
+		var sameWeishuArr = new Array();
+		var weishuArr = new Array();
+		for (var i = 0; i < arr.length; i++) {
+			if (!weishuArr.includes(arr[i]%10)) {
+				weishuArr.push(arr[i]%10);
+			}else if(!sameWeishuArr.includes(arr[i]%10 + "")){
+				sameWeishuArr.push(arr[i]%10 + "");
+			}
+		}
+
+		if ( weishushuzhiValue.sort().toString() == sameWeishuArr.sort().toString() ){
+			return true;
+		}
+
+		return false;
+	}
+
+	//尾号必含
+	function weihaobihan(arr,weihaobihanValue) {
+		let weishuArr = new Array();
+
+		for (var i = 0; i < arr.length; i++) {
+			if (!weishuArr.includes(arr[i]%10)) {
+				weishuArr.push(arr[i]%10);
+			}
+		}
+
+		if(weihaobihanValue.includes("16")){
+			if(!(weishuArr.includes(1) && weishuArr.includes(6))){
+				return false;
+			}
+		}else{
+			if(weishuArr.includes(1) && weishuArr.includes(6)){
+				return false;
+			}
+		}
+
+		if(weihaobihanValue.includes("27")){
+			if(!(weishuArr.includes(2) && weishuArr.includes(7))){
+				return false;
+			}
+		}else{
+			if(weishuArr.includes(2) && weishuArr.includes(7)){
+				return false;
+			}
+		}
+
+		if(weihaobihanValue.includes("38")){
+			if(!(weishuArr.includes(3) && weishuArr.includes(8))){
+				return false;
+			}
+		}else{
+			if(weishuArr.includes(3) && weishuArr.includes(8)){
+				return false;
+			}
+		}
+
+		if(weihaobihanValue.includes("49")){
+			if(!(weishuArr.includes(4) && weishuArr.includes(9))){
+				return false;
+			}
+		}else{
+			if(weishuArr.includes(4) && weishuArr.includes(9)){
+				return false;
+			}
+		}
+
+		if(weihaobihanValue.includes("50")){
+			if(!(weishuArr.includes(5) && weishuArr.includes(0))){
+				return false;
+			}
+		}else{
+			if(weishuArr.includes(5) && weishuArr.includes(0)){
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	//余数个数
+	function yushu(arr,yushu1Value,yushu2Value,yushu0Value) {
+		var yushu1 = 0;
+		var yushu2 = 0;
+		var yushu0 = 0;
+
+		if (yushu1Value == 'x'){
+			yushu1 = 'x';
+		}
+		if (yushu2Value == 'x'){
+			yushu2 = 'x';
+		}
+		if (yushu0Value == 'x'){
+			yushu0 = 'x';
+		}
+
+		for (var i = 0; i < arr.length; i++) {
+			if(arr[i]%3 == 1 && yushu1Value != 'x'){
+				yushu1 += 1;
+			}else if(arr[i]%3 == 2  && yushu2Value != 'x'){
+				yushu2 += 1;
+			}else if(arr[i]%3 == 0  && yushu0Value != 'x'){
+				yushu0 += 1;
+			}
+		}
+
+		if((yushu1 + ":" + yushu2 + ":" + yushu0) == (yushu1Value + ":" + yushu2Value + ":" + yushu0Value)){
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+
+	//区位个数
+	function quwei(arr,quwei1Value,quwei2Value,quwei3Value) {
+		var quwei1 = 0;
+		var qiwei2 = 0;
+		var quwei3 = 0;
+
+		for (var i = 0; i < arr.length; i++) {
+			if(arr[i] >= 1 && arr[i] <= 11){
+				quwei1 += 1;
+			}else if(arr[i] >= 12 && arr[i] <= 22){
+				qiwei2 += 1;
+			}else if(arr[i] >= 23 && arr[i] <= 33){
+				quwei3 += 1;
+			}
+		}
+
+		if((quwei1 + ":" + qiwei2 + ":" + quwei3) == (quwei1Value + ":" + quwei2Value + ":" + quwei3Value)){
+			return true;
+		}else{
+			return false;
+		}
+
+	}
+
+
+
+
+
+	//生成结果
+	function calcResult(){
+		var danButton = document.getElementsByName("dan");
+		var tuoButton = document.getElementsByName("tuo");
+
+		//胆数和拖数校验
+		var countDan = danButton.length;
+		var countTuo = tuoButton.length;
+		try{
+			if(countDan+countTuo < 6){
+				throw '胆数和拖数个数之和小于6,请继续选择';
+			}
+
+			if(countDan > 6){
+				throw '胆数个数大于6,请删掉部分胆数';
+			}
+		}catch(err){
+			alert(err);
+			return;
+		}
+
+
+		var calcResult = document.getElementById("calcResult");
+		calcResult.disabled = true;
+		calcResult.style.backgroundColor = "red";
+
+
+		var dan = new Array();
+		var tuo = new Array();
+
+		for(var i=0;i<danButton.length;i++){
+			dan.push(parseInt(danButton[i].innerHTML));
+		}
+
+		for(var i=0;i<tuoButton.length;i++){
+			tuo.push(parseInt(tuoButton[i].innerHTML));
+		}
+
+		
+
+		//拖数进行组合
+		var tuoResult = getNumbers(tuo,6-countDan);
+
+		var result = new Array();
+		if(countTuo == 0 || tuoResult.length == 0){
+			result.push(dan.sort(sortArr));
+		}else{
+			for(let arr of tuoResult){
+				result.push((arr.concat(dan)).sort(sortArr));
+			}
+		}
+
+
+		var selectedResult = selectNum(result);
+		if(result.length == 0){
+			return ;
+		}else{
+			//删除为undefined的元素
+			for(var i = 0; i < result.length; i++) {
+				if(result[i] == undefined ) {
+					result.splice(i,1);
+					i = i - 1; // i - 1 ,因为空元素在数组下标 2 位置，删除空之后，后面的元素要向前补位，
+				}
+			}
+		}
+
+		//统计总组数
+		var totalNum = document.getElementById("totalNum");
+		totalNum.innerHTML = "生成结果组数为： " +  result.length;
+
+
+		//将筛选的结果放到areatext结果区
+		var resultTable = document.getElementById("result");
+		while(resultTable.hasChildNodes()){
+			resultTable.removeChild(resultTable.firstChild);
+		}
+
+
+		
+		var yushuCol = new Array();
+
+
+		for(let m=0; m< result.length; m++){
+
+			//按余数120排序
+			var yue1 = new Array();
+			var yue2 = new Array();
+			var yue0 = new Array();
+			for (var i = result[m].length - 1; i >= 0; i--) {
+				
+				if(result[m][i]%3 == 1){
+					yue1.push(result[m][i]);
+				}else if(result[m][i]%3 == 2){
+					yue2.push(result[m][i]);
+				}else{
+					yue0.push(result[m][i]);
+				}
+			}
+
+			yue1.sort(sortArr);
+			yue2.sort(sortArr);
+			yue0.sort(sortArr);
+
+			var temp = new Array();
+			temp.push(yue1);
+			temp.push(yue2);
+			temp.push(yue0);
+
+
+			yushuCol.push(temp);
+
+			result[m] = yue1.concat(yue2).concat(yue0);	
+
+		}
+
+		yushuCol.sort(function(x, y){
+			return getMaxCount(y) - getMaxCount(x);
+		});
+
+		
+		for (var i = 0; i < yushuCol.length; i++) {
+			result[i] = yushuCol[i][0].concat(yushuCol[i][1]).concat(yushuCol[i][2]);
+		}
+
+
+
+
+		//页面展示最终排序的数组
+		for(let j=0; j< result.length; j++){
+
+			var arr = result[j];
+
+			if(undefined != arr){
+				var tr = document.createElement("tr");
+				if ((j+1)%10 == 0) {
+					tr.style = "color:#C00000;";
+				}
+				for (let i = 0; i < arr.length; i++) {
+				    var td = document.createElement("td");
+					if(arr[i]%3 == 2){
+						td.style = "width:80px;background-color:gray;";
+					}else if(arr[i]%3 == 1){
+						td.style = "width:80px;background-color:pink;";
+					}else{
+						td.style = "width:80px;"
+					}
+
+				    if(i == arr.length-1){
+						td.innerHTML = PrefixInteger(arr[i],2) + "\n";
+                    }else {
+						td.innerHTML = PrefixInteger(arr[i],2);
+					}
+
+					
+					tr.append(td);
+				}
+				resultTable.appendChild(tr);
+			}
+		}
+
+
+		var finalTr = document.createElement("tr")
+		finalTr.innerHTML = "<td>----</td><td>----</td><td>----</td><td>----</td><td>----</td><td>----</td>";
+		resultTable.appendChild(finalTr);
+
+		calcResult.disabled = false;
+		calcResult.style.backgroundColor = "";
+	}
+	
+
+	//排序函数
+	function sortArr(a,b){
+		return a - b;
+	}
+
+	/**
+	 * @param {*} source 源数组
+	 * @param {*} count 要取出多少项
+	 * @param {*} isPermutation 是否使用排列的方式
+	 * @return {any[]} 所有排列组合,格式为 [ [1,2], [1,3]] ...
+	 */
+	function getNumbers(source, count, isPermutation = false) {
+	  //如果只取一位，返回数组中的所有项，例如 [ [1], [2], [3] ]
+	  let currentList = source.map((item) => [item]);
+	  if (count === 1) {
+	    return currentList;
+	  }
+	  let result = [];
+	  //取出第一项后，再取出后面count - 1 项的排列组合，并把第一项的所有可能（currentList）和 后面count-1项所有可能交叉组合
+	  for (let i = 0; i < currentList.length; i++) {
+	    let current = currentList[i];
+	    //如果是排列的方式，在取count-1时，源数组中排除当前项
+	    let children = [];
+	    if (isPermutation) {
+	      children = getNumbers(source.filter(item => item !== current[0]), count - 1, isPermutation);
+	    }
+	    //如果是组合的方法，在取count-1时，源数组只使用当前项之后的
+	    else {
+	      children = getNumbers(source.slice(i + 1), count - 1, isPermutation);
+	    }
+	    for (let child of children) {
+	      result.push([...current, ...child]);
+	    }
+	  }
+	  return result;
+	}
+
+	function getMaxCount(arr){
+		var maxCount = 0;
+		for (var i = 0; i < arr.length -1; i++) {
+			if(arr[i].length > arr[i+1].length){
+				maxCount = arr[0].length;
+			}
+		}
+		return maxCount;
+	}
+
+
+	
+</script>
+
+
+
+
+
+</html>
+
+
